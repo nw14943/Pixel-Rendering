@@ -23,7 +23,6 @@
 #include <string>
 #include <iostream>
 #include "position.h"
-#include "velocity.h"
 #include "GUI.h"
 
 #include <tuple>
@@ -256,49 +255,6 @@ void reshapeCallback(int width, int height)
     glutReshapeWindow(extent.getX(), extent.getY());
 }
 
-
-/***********************************************
-* Draw Demo
-* This draws a fancy 3d demo. It is not used
-* for the spaceship game.
-***********************************************/
-void drawDemo()
-{
-    // draw a white square on the x z axis
-    glColor3d(1.0, 1.0, 1.0); // RGB 0 Black - 1 White
-    glBegin(GL_POLYGON);
-    glVertex3d(-0.5, 0.0, -0.5);
-    glVertex3d(0.5, 0.0, -0.5);
-    glVertex3d(0.5, 0.0, 0.5);
-    glVertex3d(-0.5, 0.0, 0.5);
-    glEnd();
-
-    // draw a white square on the x y axis
-    glBegin(GL_POLYGON);
-    glVertex3d(-0.5, -0.5, 0.0);
-    glVertex3d(0.5, -0.5, 0.0);
-    glVertex3d(0.5, 0.5, 0.0);
-    glVertex3d(-0.5, 0.5, 0.0);
-    glEnd();
-
-    // draw a white square on the y z axis
-    glBegin(GL_POLYGON);
-    glVertex3d(0.0, -0.5, -0.5);
-    glVertex3d(0.0, 0.5, -0.5);
-    glVertex3d(0.0, 0.5, 0.5);
-    glVertex3d(0.0, -0.5, 0.5);
-    glEnd();
-
-    // draw a white wire cube at 0 0 0
-    glColor3d(1.0, 1.0, 1.0); // RGB 0 Black - 1 White
-    glutWireCube(GLdouble(0.75));
-    // draw a black solid cube at 0 0 0
-    glColor3d(0.0, 0.0, 0.0); // RGB 0 Black - 1 White
-    glutSolidCube(GLdouble(0.75));
-    // Rotate the context x, y, and z every frame.
-    glRotated(1.0, 1.0, 1.0, 1.0);
-}
-
 /***********************************************
 * Translate
 * translates the context
@@ -343,6 +299,16 @@ void changeColorRGB(double r, double g, double b)
 {
     // glColor3d takes numbers from 0-1
     glColor3d((r / 255.0), (g / 255.0), (b / 255.0));
+}
+
+/***********************************************
+* Change Color RGBA
+* changes the color based on numbers from 0-255
+***********************************************/
+void changeColorRGB(double r, double g, double b, double a)
+{
+    // glColor4d takes numbers from 0-1
+    glColor4d((r / 255.0), (g / 255.0), (b / 255.0), (a / 255.0));
 }
 
 /***********************************************
@@ -456,90 +422,4 @@ void drawPoints(const std::vector<std::tuple<Position, int>>& pts, int x, int y,
     glPointSize(1.0);
     glDisable(GL_POINT_SMOOTH);
     glEnable(GL_CULL_FACE);
-}
-
-/***********************************************
-* Draw Spaceship
-* draws a simple 2d spaceship.
-***********************************************/
-void drawSpaceship(const Position& center, double rotation, double scale)
-{
-    // Draw a white X on the center of the spaceship
-    /*changeColorRGB(255.0, 255.0, 255.0);
-    glBegin(GL_LINES);
-    glVertex3d(center.getpxX() + scale, center.getpxY() + scale, 0.0);
-    glVertex3d(center.getpxX() - scale, center.getpxY() - scale, 0.0);
-
-    glVertex3d(center.getpxX() - scale, center.getpxY() + scale, 0.0);
-    glVertex3d(center.getpxX() + scale, center.getpxY() - scale, 0.0);
-    glEnd();*/
-
-    // Change color to dull grey
-    changeColorRGB(128.0, 128.0, 128.0);
-
-    // Draw a rotated rectangle
-    glBegin(GL_POLYGON);
-    // Position that is not rotated.
-    Position pos1(-4.0 * scale, -1.0 * scale);
-    // Position if it were rotated.
-    Position r1;
-    r1 = pos1.offsetRotate(center, rotation);
-    glVertex3d(r1.getpxX(), r1.getpxY(), 0.0);
-    pos1.addX(8.0 * scale);
-    r1 = pos1.offsetRotate(center, rotation);
-    glVertex3d(r1.getpxX(), r1.getpxY(), 0.0);
-    pos1.addY(4.0 * scale);
-    r1 = pos1.offsetRotate(center, rotation);
-    glVertex3d(r1.getpxX(), r1.getpxY(), 0.0);
-    pos1.addX(-3.0 * scale);
-    pos1.addY(2.0 * scale);
-    r1 = pos1.offsetRotate(center, rotation);
-    glVertex3d(r1.getpxX(), r1.getpxY(), 0.0);
-    pos1.addX(-2.0 * scale);
-    r1 = pos1.offsetRotate(center, rotation);
-    glVertex3d(r1.getpxX(), r1.getpxY(), 0.0);
-    pos1.addX(-3.0 * scale);
-    pos1.addY(-2.0 * scale);
-    r1 = pos1.offsetRotate(center, rotation);
-    glVertex3d(r1.getpxX(), r1.getpxY(), 0.0);
-    glEnd();
-
-
-    // Draw a rotated rectangle
-    glBegin(GL_POLYGON);
-    // Position that is not rotated.
-    Position pos2(-3.0 * scale, -5.0 * scale);
-    // Position if it were rotated.
-    Position r2;
-    r2 = pos2.offsetRotate(center, rotation);
-    glVertex3d(r2.getpxX(), r2.getpxY(), 0.0);
-    pos2.addX(6.0 * scale);
-    r2 = pos2.offsetRotate(center, rotation);
-    glVertex3d(r2.getpxX(), r2.getpxY(), 0.0);
-    pos2.addY(2.0 * scale);
-    r2 = pos2.offsetRotate(center, rotation);
-    glVertex3d(r2.getpxX(), r2.getpxY(), 0.0);
-    pos2.addX(-6.0 * scale);
-    r2 = pos2.offsetRotate(center, rotation);
-    glVertex3d(r2.getpxX(), r2.getpxY(), 0.0);
-    glEnd();
-
-
-    // Draw a rotated triangle
-    glBegin(GL_TRIANGLES);
-    // Position that is not rotated.
-    Position pos3(-3.0 * scale, -5.0 * scale);
-    // Position if it were rotated.
-    Position r3;
-    r3 = pos3.offsetRotate(center, rotation);
-    glVertex3d(r3.getpxX(), r3.getpxY(), 0.0);
-    pos3.addX(3.0 * scale);
-    pos3.addY(5.0 * scale);
-    r3 = pos3.offsetRotate(center, rotation);
-    glVertex3d(r3.getpxX(), r3.getpxY(), 0.0);
-    pos3.addX(3.0 * scale);
-    pos3.addY(-5.0 * scale);
-    r3 = pos3.offsetRotate(center, rotation);
-    glVertex3d(r3.getpxX(), r3.getpxY(), 0.0);
-    glEnd();
 }

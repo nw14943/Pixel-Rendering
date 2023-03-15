@@ -52,9 +52,6 @@ void keyboardCallback(unsigned char key, int x, int y);
 void mouseCallback(int button, int state, int x, int y);
 void reshapeCallback(int width, int height);
 
-// Draw fancy demo
-void drawDemo();
-
 // Set the zoom
 void zoom(Position zoom);
 // Change the current drawing color.
@@ -70,9 +67,3 @@ void drawSphere(const Position& pt, int radius);
 void drawPoints(const std::vector<std::tuple<Position, int>>& pts, int x = 0, int y = 0, int z = 0);
 void rotate(double angle, bool x, bool y, bool z);
 void translate(int x, int y, int z);
-// 3d rectangles
-//void drawRectangle3d(Position pt1, Position pt2, Position pt3, Position pt4);
-//void drawSquare3d(Position pt, Position size);
-
-// Draw ship
-void drawSpaceship(const Position& center, double rotation = 0.0, double scale = 2.0);

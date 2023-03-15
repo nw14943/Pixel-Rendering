@@ -132,7 +132,6 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="position.cpp" />
-    <ClCompile Include="velocity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -142,8 +141,6 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="position.h" />
-    <ClInclude Include="space.h" />
-    <ClInclude Include="velocity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
