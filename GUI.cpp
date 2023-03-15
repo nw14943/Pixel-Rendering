@@ -441,10 +441,10 @@ void drawPoints(const std::vector<std::tuple<Position, int>>& pts, int x, int y,
         //changeColorRGB(0, 0, 0);
         //changeColorRGB(128, 128, 128);
         //changeColorRGB(255, 255, 255);
-        if (size != 2)
+        if (size != 5)
         {
-            glColor4d(.3, .3, .3, 0.3);
-            //glColor4d(pt.getpxX(), pt.getpxX(), pt.getpxX(), 0.3);
+            //glColor4d(.3, .3, .3, 0.3);
+            glColor4d(pt.getpxX()/255.0, pt.getpxY()/255.0, pt.getpxZ()/255.0, 0.3);
             //glPointSize(128.0);
             //changeColorRGB(255, 155, 255);
         }

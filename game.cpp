@@ -120,7 +120,7 @@ std::vector<std::tuple<Position, int>> parsePixels(const char* filename)
                 pxls.push_back(stoi(cell));
 
             Position pos(pxls[0], pxls[1], pxls[2]);
-            result.push_back(std::tuple<Position, int>(pos, 2));
+            result.push_back(std::tuple<Position, int>(pos, 5));
             pxls = std::vector<int>();
         }
     }
