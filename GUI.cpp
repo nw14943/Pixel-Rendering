@@ -414,7 +414,8 @@ void drawSphere(const Position& pt, int radius)
     glColor4d(.7, .7, .7, 0.3);
 
     glBegin(GL_POINTS);
-    glVertex3d(pt.getpxX() -128, pt.getpxY()+128, pt.getpxZ());
+    //glVertex3d(pt.getpxX() - 128, pt.getpxY() + 128, pt.getpxZ());
+    glVertex3d(pt.getpxX(), pt.getpxY(), pt.getpxZ());
     glEnd();
 
     glPointSize(1.0);

@@ -153,28 +153,28 @@ void callback4(void* p)
     // If the up key is pressed.
     if (GUI::isUp())
     {
-        rotate(1.0, true, false, false);
+        rotate(0.000000001 * dtime, true, false, false);
         //GUI::camera.ProcessKeyboard(FORWARD, dtime);
         std::cout << "Up" << std::endl;
     }
     // If the down key is pressed.
     if (GUI::isDown())
     {
-        rotate(-1.0, true, false, false);
+        rotate(-0.000000001 * dtime, true, false, false);
         //GUI::camera.ProcessKeyboard(BACKWARD, dtime);
         std::cout << "Down" << std::endl;
     }
     // If the right key is pressed.
     if (GUI::isRight())
     {
-        rotate(1.0, false, true, false);
+        rotate(0.000000001 * dtime, false, true, false);
         //GUI::camera.ProcessKeyboard(RIGHT, dtime);
         std::cout << "Right" << std::endl;
     }
     // If the left key is pressed.
     if (GUI::isLeft())
     {
-        rotate(-1.0, false, true, false);
+        rotate(-0.000000001 * dtime, false, true, false);
         //GUI::camera.ProcessKeyboard(LEFT, dtime);
         std::cout << "Left" << std::endl;
     }
@@ -184,8 +184,8 @@ void callback4(void* p)
         //rotate(1.0, false, false, true);
         std::cout << "Space " << std::endl;
     }
-    drawAxis(-128, 128, 0);
-    drawPoints(*pts, -128, 128, 0);
+    drawAxis(-128, -128, -128);
+    drawPoints(*pts, -128, -128, -128);
     //drawSphere(Position(0, 0, 0), 128);
 }
 
@@ -274,8 +274,8 @@ int main(int argc, char** argv)
 #endif // !_WIN32
 {
     // Define the scaling of the game.
-    //Position extent(512.0, 512.0, 512.0);
-    Position extent(1024.0, 1024.0, 1024.0);
+    Position extent(512.0, 512.0, 512.0);
+    //Position extent(1024.0, 1024.0, 1024.0);
 
     // Initialize the GUI
     GUI gui(argc, argv, "game", extent);

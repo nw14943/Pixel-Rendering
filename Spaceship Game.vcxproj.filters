@@ -34,8 +34,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="README.md" />
-    <None Include="pixels.csv" />
-    <None Include="clusters.csv" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GUI.h">
