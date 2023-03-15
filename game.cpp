@@ -153,29 +153,29 @@ void callback4(void* p)
     // If the up key is pressed.
     if (GUI::isUp())
     {
-        //rotate(1.0, true, false, false);
-        GUI::camera.ProcessKeyboard(FORWARD, dtime);
+        rotate(1.0, true, false, false);
+        //GUI::camera.ProcessKeyboard(FORWARD, dtime);
         std::cout << "Up" << std::endl;
     }
     // If the down key is pressed.
     if (GUI::isDown())
     {
-        //rotate(-1.0, true, false, false);
-        GUI::camera.ProcessKeyboard(BACKWARD, dtime);
+        rotate(-1.0, true, false, false);
+        //GUI::camera.ProcessKeyboard(BACKWARD, dtime);
         std::cout << "Down" << std::endl;
     }
     // If the right key is pressed.
     if (GUI::isRight())
     {
-        //rotate(1.0, false, true, false);
-        GUI::camera.ProcessKeyboard(RIGHT, dtime);
+        rotate(1.0, false, true, false);
+        //GUI::camera.ProcessKeyboard(RIGHT, dtime);
         std::cout << "Right" << std::endl;
     }
     // If the left key is pressed.
     if (GUI::isLeft())
     {
-        //rotate(-1.0, false, true, false);
-        GUI::camera.ProcessKeyboard(LEFT, dtime);
+        rotate(-1.0, false, true, false);
+        //GUI::camera.ProcessKeyboard(LEFT, dtime);
         std::cout << "Left" << std::endl;
     }
     // If the space key is pressed.
