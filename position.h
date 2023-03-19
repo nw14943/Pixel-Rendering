@@ -1,3 +1,12 @@
+/***********************************************
+* Position
+* --------------------------------------
+* Author : Nathan Wood
+* --------------------------------------
+* Purpose:
+* This file holds the definitions for the Position
+* class.
+***********************************************/
 #pragma once
 
 class Position

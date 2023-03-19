@@ -1,4 +1,12 @@
-
+/***********************************************
+* Position
+* --------------------------------------
+* Author : Nathan Wood
+* --------------------------------------
+* Purpose:
+* This file holds the declarations for the Position
+* class.
+***********************************************/
 #include "position.h"
 #include <cmath>
 

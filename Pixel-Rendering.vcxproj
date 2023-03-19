@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b5f63f48-203c-4505-a82e-3076eefd0892}</ProjectGuid>
-    <RootNamespace>SpaceshipGame</RootNamespace>
+    <ProjectGuid>{5c738118-e565-4b21-8ee4-8fada126c389}</ProjectGuid>
+    <RootNamespace>PixelRendering</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>OpenGL Tests</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,17 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="camera.cpp" />
-    <ClCompile Include="game.cpp" />
+    <None Include=".gitignore" />
+    <None Include="clusters.csv" />
+    <None Include="packages.config" />
+    <None Include="pixels.csv" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="renderer.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="position.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="camera.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="position.h" />
   </ItemGroup>

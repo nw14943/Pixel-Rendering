@@ -15,7 +15,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="game.cpp">
+    <None Include=".gitignore" />
+    <None Include="clusters.csv" />
+    <None Include="packages.config" />
+    <None Include="pixels.csv" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GUI.cpp">
@@ -24,22 +31,12 @@
     <ClCompile Include="position.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="position.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

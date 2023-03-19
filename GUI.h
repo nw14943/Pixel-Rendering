@@ -1,9 +1,18 @@
+/***********************************************
+* GUI
+* --------------------------------------
+* Author : Nathan Wood
+* --------------------------------------
+* Purpose:
+* This file holds the definitions for the GUI
+* class.
+***********************************************/
 #pragma once
 
 #include "position.h"
-#include "camera.h"
 #include <string>
 #include <vector>
+#include <chrono>
 
 class GUI
 {
@@ -17,8 +26,9 @@ private:
 	static bool isLeftPress;
 	static bool isSpacePress;
 
+	static std::chrono::microseconds lastFrame;
+
 public:
-	static Camera camera;
 	static void* p; // void pointer to hold game object
 	static void (*callback) (void*); // function pointer
 	// Constructors
@@ -42,6 +52,23 @@ public:
 	static bool isLeft()  { return isLeftPress; }
 	static bool isRight() { return isRightPress; }
 	static bool isSpace() { return isSpacePress; }
+
+	//static double getdTime();
+	// Get a new time.
+	static double getdTime()
+	{
+		// Get current time in microseconds
+		using namespace std::chrono;
+		microseconds timeNow = duration_cast<microseconds>(
+			system_clock::now().time_since_epoch()
+			);
+		// find how long it has been since last gotten
+		double dtime = (timeNow - lastFrame).count() / 10000.0;
+
+		lastFrame = timeNow;
+
+		return dtime;
+	}
 };
 
 // client functions for OpenGL callbacks

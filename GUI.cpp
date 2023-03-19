@@ -1,3 +1,12 @@
+/***********************************************
+* GUI
+* --------------------------------------
+* Author : Nathan Wood
+* --------------------------------------
+* Purpose:
+* This file holds the declarations for the GUI
+* class.
+***********************************************/
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
 #include <openGL/gl.h>    // Main OpenGL library
@@ -38,13 +47,17 @@ void(*GUI::callback)(void*) = NULL; // function pointer
 
 // Sets the private static GUI variables
 Position GUI::ptExtent;
-Camera GUI::camera = Camera(0,0,0,0,0,0,0,0);
 bool GUI::initialized = false;
 bool GUI::isDownPress = false;
 bool GUI::isUpPress = false;
 bool GUI::isRightPress = false;
 bool GUI::isLeftPress = false;
 bool GUI::isSpacePress = false;
+
+std::chrono::microseconds GUI::lastFrame =
+    std::chrono::duration_cast<std::chrono::microseconds>(
+        std::chrono::system_clock::now().time_since_epoch()
+    );
 
 
 /***********************************************
@@ -84,7 +97,6 @@ void GUI::initialize(int argc, char** argv, const std::string title, const Posit
     else
         glScaled(2.0 / ptExtent.getX(), 2.0 / ptExtent.getY(), 1.0);
 
-    GUI::camera.GetViewMatrix();
 
     // Setup the GL callback functions
     glutDisplayFunc(drawCallback);
@@ -186,7 +198,7 @@ void drawCallback() // Note: Objects drawn first will be on top
 ***********************************************/
 void motionCallback(int x, int y)
 {
-    //if(x)
+
 }
 
 /***********************************************
@@ -227,17 +239,17 @@ void mouseCallback(int button, int state, int x, int y)
     if ((button == GLUT_LEFT_BUTTON) && state == GLUT_DOWN)
     {
         if (x > centerX)
-            rotate(1.0, false, true, false);
+            //rotate(1.0, false, true, false);
         if (x < centerX)
-            rotate(-1.0, true, false, false);
+            //rotate(-1.0, true, false, false);
         std::cout << "Left mouse X:" << x << std::endl;
     }
     if ((button == GLUT_RIGHT_BUTTON) && state == GLUT_DOWN)
     {
         if (y > centerY)
-            rotate(1.0, true, false, false);
+            //rotate(1.0, true, false, false);
         if (y < centerY)
-            rotate(-1.0, false, true, false);
+            //rotate(-1.0, false, true, false);
         std::cout << "Right mouse Y:" << y << std::endl;
     }
 }

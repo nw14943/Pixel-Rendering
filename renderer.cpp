@@ -1,4 +1,13 @@
-
+/***********************************************
+* Renderer
+* --------------------------------------
+* Author : Nathan Wood
+* --------------------------------------
+* Purpose:
+* This file holds the Main function and the
+* callback. There is also some other functions
+* for setup purposes.
+***********************************************/
 
 #define _USE_MATH_DEFINES
 #include <cmath>
@@ -18,37 +27,33 @@
 * the other OpenGL callback functions defined
 * elsewhere.
 ***********************************************/
-void callback4(void* p)
+void callback(void* p)
 {
     std::vector<std::tuple<Position, int>>* pts = (std::vector<std::tuple<Position, int>>*) p;
-    double dtime = GUI::camera.getdTime();
+    double dtime = GUI::getdTime();
 
     // If the up key is pressed.
     if (GUI::isUp())
     {
-        rotate(0.000000001 * dtime, true, false, false);
-        //GUI::camera.ProcessKeyboard(FORWARD, dtime);
+        rotate(1.0 * dtime, true, false, false);
         std::cout << "Up" << std::endl;
     }
     // If the down key is pressed.
     if (GUI::isDown())
     {
-        rotate(-0.000000001 * dtime, true, false, false);
-        //GUI::camera.ProcessKeyboard(BACKWARD, dtime);
+        rotate(-1.0 * dtime, true, false, false);
         std::cout << "Down" << std::endl;
     }
     // If the right key is pressed.
     if (GUI::isRight())
     {
-        rotate(0.000000001 * dtime, false, true, false);
-        //GUI::camera.ProcessKeyboard(RIGHT, dtime);
+        rotate(-1.0 * dtime, false, true, false);
         std::cout << "Right" << std::endl;
     }
     // If the left key is pressed.
     if (GUI::isLeft())
     {
-        rotate(-0.000000001 * dtime, false, true, false);
-        //GUI::camera.ProcessKeyboard(LEFT, dtime);
+        rotate(1.0 * dtime, false, true, false);
         std::cout << "Left" << std::endl;
     }
     // If the space key is pressed.
@@ -59,10 +64,17 @@ void callback4(void* p)
     }
     drawAxis(-128, -128, -128);
     drawPoints(*pts, -128, -128, -128);
-    //drawSphere(Position(0, 0, 0), 128);
 }
 
 
+/***********************************************
+* Parse Clusters
+* This function parses the clusters.csv file.
+* It expects the csv to follow the format of
+* X, Y, Z, score, radius
+* (X, Y, Z can be replaced with R, G, B)
+* and returns a vector of tuples of position, size
+***********************************************/
 std::vector<std::tuple<Position, int>> parseClusters(const char* filename)
 {
     std::ifstream file(filename);
@@ -101,6 +113,14 @@ std::vector<std::tuple<Position, int>> parseClusters(const char* filename)
 }
 
 
+/***********************************************
+* Parse Pixels
+* This function parses the pixels.csv file.
+* It expects the csv to follow the format of
+* X, Y, Z
+* (X, Y, Z can be replaced with R, G, B)
+* and returns a vector of tuples of position, 5
+***********************************************/
 std::vector<std::tuple<Position, int>> parsePixels(const char* filename)
 {
     std::ifstream file(filename);
@@ -151,10 +171,13 @@ int main(int argc, char** argv)
     // Initialize the GUI
     GUI gui(argc, argv, "game", extent);
 
+    // Parse the csv files
     std::vector<std::tuple<Position, int>> pixels = parsePixels("pixels.csv");
     std::vector<std::tuple<Position, int>> clusters = parseClusters("clusters.csv");
     
+    // Combine into a single object
     pixels.insert(pixels.end(), clusters.begin(), clusters.end());
 
-    gui.run(callback4, &pixels);
+    // Start the program loop
+    gui.run(callback, &pixels);
 }
